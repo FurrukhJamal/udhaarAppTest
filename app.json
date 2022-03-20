@@ -2,7 +2,7 @@
   "expo": {
     "name": "udhaarAppTest",
     "slug": "udhaarAppTest",
-    "description" : "This is a smiple app that was given as a coding Test from udhaar App. This uses the github users API to display a list of github users with their avatar, login name and a link to their github profile. There is also a modal feature that displays user's name, location and number of followers/followings",
+    "description": "This is a smiple app that was given as a coding Test from udhaar App. This uses the github users API to display a list of github users with their avatar, login name and a link to their github profile. There is also a modal feature that displays user's name, location and number of followers/followings",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.furrukh.udhaarAppTest"
     },
     "web": {
       "favicon": "./assets/favicon.png"

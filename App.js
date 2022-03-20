@@ -8,7 +8,7 @@ import AppContext from './context/appContext';
 import DisplayList from './components/DisplayList';
 import UserInfoModal from './components/Modal';
 
-const GITHUBACCESSTOKEN= "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"
+const GITHUBACCESSTOKEN= "Your_github_accessToken"
 
 export default function App() {
   const[data, setData] = useState([])
