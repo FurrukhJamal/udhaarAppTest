@@ -1,8 +1,11 @@
-import { StyleSheet, Text, View, Modal, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, View, Modal, Pressable, Image, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/appContext'
-import useFetch from '../hook/useFetch'
 
+/**@params : user data object that is provided in renderItem component to display each user
+ * @return : returns a modal view displaying relevant data of the selected user
+ * 
+ */
 export default function UserInfoModal(props) {
     
     const[followers, setFollowers] = useState(0)
@@ -11,6 +14,7 @@ export default function UserInfoModal(props) {
     const[location, setLocation] = useState(null)
     const{setModalVisible, modalVisible} = useContext(AppContext)
 
+    /**effect : makes the api call to setup all the relevant data required for modal */
     useEffect(()=>{
       async function getUserData(){
         let response = await fetch(`https://api.github.com/users/${props.data.login}`)
@@ -26,15 +30,21 @@ export default function UserInfoModal(props) {
         setLocation(result.location)
       })()
     },[])
+        
         return (
           
           <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
-            
+            onRequestClose={() => {
+              //console.log("Modal has been closed.");
+              setModalVisible(!modalVisible);
+            }}
           >
-            <View style={styles.centeredView}>
+            <TouchableOpacity 
+              style={styles.centeredView}
+              onPress = {()=>setModalVisible(!modalVisible)}>
               <View style={styles.modalView}>
                 <Image 
                   style = {{width : 60, height : 60}}
@@ -63,7 +73,7 @@ export default function UserInfoModal(props) {
                   <Text style={styles.textStyle}>Close</Text>
                 </Pressable>
               </View>
-            </View>
+            </TouchableOpacity>
           </Modal>
         
          
@@ -75,7 +85,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
+    //backgroundColor : "teal"
   },
   modalView: {
     margin: 20,
@@ -113,19 +124,3 @@ const styles = StyleSheet.create({
   }
 })
 
-
-
- 
-        //     <View>
-        //       <Text>Hello World</Text>
-              
-        //       <View>
-        //         {!isFollowersLoading && <Text>Followers : {followers}</Text>}
-        //         {!isFollowingLoading && <Text>Following : {following}</Text>}
-        //       </View>
-              
-        //     </View>
-            
-          
-          
-        // </View>

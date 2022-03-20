@@ -5,12 +5,15 @@ export default function SearchBoxComponent() {
     const [search, setSearch] = useState("")
   
     function handleTextChange(value){
-      console.log("Value is: " , value)
+      //console.log("Value is: " , value)
       setSearch(value)
     }
-  
+    
+    /**Handles searching, the setTimeout function could be modified to search for query after 1sec
+     * of keypress
+     */
     function handleKeyPressOut(){
-      console.log("Pressed out triggered")
+      //console.log("Pressed out triggered")
       setTimeout(()=>{
         console.log("Search hit after one secoond of keyPress")
       }, 1000)

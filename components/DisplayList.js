@@ -3,6 +3,9 @@ import React, { useContext } from 'react'
 import AppContext from '../context/appContext'
 import { Button } from 'react-native-elements'
 
+/**@params : Props.data an array with the objects for each user's data passed from App.js
+ * @returns : A flatlist with username, avatar and link to Github Profile
+ */
 export default function DisplayList(props) {
     const{setModalVisible, setModalData, modalVisible} = useContext(AppContext)
   
@@ -15,7 +18,10 @@ export default function DisplayList(props) {
     }
   
   
-        
+     /**@params :  data array of objects from Flatlist's data prop in DisplayListComponent
+      * @returns : a view to display each item in list with username, avatar and link to github profile
+      *   
+      */   
     function renderList(obj){
       //console.log(obj)
       return(
@@ -41,19 +47,8 @@ export default function DisplayList(props) {
                 onPress = {()=>loadProfilePage(obj.item.html_url)}
                 title= "Visit Profile"
                 titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
-  
-                
-                buttonStyle={{
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  borderRadius: 20,
-                  backgroundColor : "green"
-                }}
-                containerStyle={{
-                  width: 200,
-                  marginHorizontal: 50,
-                  marginVertical: 10,
-                }}
+                buttonStyle={styles.buttonStyle}
+                containerStyle={styles.containerStyle}
                 icon={{
                   name: 'arrow-right',
                   type: 'font-awesome',
@@ -64,16 +59,17 @@ export default function DisplayList(props) {
                 iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
               />            
               </View>
-              {/* Modal */}
-                  
-              
+             
         </View>
       )
     }
+    
+    
+    
     return (
       <View style = {styles.listContainer}>
         <FlatList 
-          contentContainerStyle = {{backgroundColor : "yellow", paddingBottom : 80, paddingTop : 10}}
+          contentContainerStyle = {{ paddingBottom : 80, paddingTop : 10}}
           data = {props.data}
           renderItem = {renderList}
           keyExtractor = {(item,index)=>index.toString()}
@@ -101,5 +97,16 @@ const styles = StyleSheet.create({
         paddingVertical : 10,
         
     },
+    buttonStyle : {
+      borderWidth: 0,
+      borderColor: 'transparent',
+      borderRadius: 20,
+      backgroundColor : "green"
+  },
+    containerStyle : {
+      width: 200,
+      marginHorizontal: 50,
+      marginVertical: 10,
+  },
 
 })
